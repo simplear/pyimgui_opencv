@@ -1,9 +1,18 @@
 # -*- coding: utf-8 -*-
+
+"""
+Reference
+- https://marina.sys.wakayama-u.ac.jp/~tokoi/?date=20040914
+- https://qiita.com/Dhichisutto/items/76ec93c690caf20cedb9
+- https://aoirint.hatenablog.com/entry/2020/03/23/011157
+- http://wisdom.sakura.ne.jp/system/opengl/gl23.html
+- http://wisdom.sakura.ne.jp/system/opengl/gl26.html
+"""
+
 import sys
 import glfw
 import OpenGL.GL as gl
 import cv2
-
 import imgui
 from imgui.integrations.glfw import GlfwRenderer
 
