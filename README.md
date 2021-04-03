@@ -7,6 +7,8 @@ simple combination of pyimgui and opencv
 - https://aoirint.hatenablog.com/entry/2020/03/23/011157
 - http://wisdom.sakura.ne.jp/system/opengl/gl23.html
 - http://wisdom.sakura.ne.jp/system/opengl/gl26.html
+- https://blog.mktia.com/save-video-with-opencv-python/
+- https://qiita.com/chez_sugi/items/76a839244449b716c587
 
 ## tested environment
 - platform : ubuntu18.04LTS
@@ -18,5 +20,3 @@ simple combination of pyimgui and opencv
 - imgui   : 1.3.1
 - OpenCV  : 4.5.1
 
-## usage
-python pyimgui_opencv.py
