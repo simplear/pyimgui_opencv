@@ -1,18 +1,9 @@
 # -*- coding: utf-8 -*-
-
-"""
-Reference
-- https://marina.sys.wakayama-u.ac.jp/~tokoi/?date=20040914
-- https://qiita.com/Dhichisutto/items/76ec93c690caf20cedb9
-- https://aoirint.hatenablog.com/entry/2020/03/23/011157
-- http://wisdom.sakura.ne.jp/system/opengl/gl23.html
-- http://wisdom.sakura.ne.jp/system/opengl/gl26.html
-"""
-
 import sys
 import glfw
 import OpenGL.GL as gl
 import cv2
+
 import imgui
 from imgui.integrations.glfw import GlfwRenderer
 
@@ -28,14 +19,18 @@ def main():
     impl = GlfwRenderer(window)
 
     img_scale = 1.0
-    img_texture, img_w, img_h = load_image("box.jpg")
+
+    capture = cv2.VideoCapture(0) # generate capture object
 
     while not glfw.window_should_close(window):
-        glfw.wait_events()
+        #glfw.wait_events()
         glfw.poll_events()
         impl.process_inputs()
 
         imgui.new_frame()
+
+        ret, img = capture.read() # capture new frame
+        img_texture, img_w, img_h = image_to_texture(img)
 
         ### Menu Bar
         if imgui.begin_main_menu_bar():
@@ -73,6 +68,9 @@ def main():
     impl.shutdown()
     glfw.terminate()
 
+    # camera
+    capture.release()
+    cv2.destroyAllWindows()
 
 def impl_glfw_init():
     width, height = 1280, 720
@@ -101,10 +99,9 @@ def impl_glfw_init():
 
     return window
 
-def load_image(IMAGE):
-    img = cv2.imread(IMAGE) # read
-    img_gl = cv2.cvtColor(img, cv2.COLOR_BGR2RGB) # convert color
-    height, width = img.shape[:2] # get shape
+def image_to_texture(IMG):
+    img_gl = cv2.cvtColor(IMG, cv2.COLOR_BGR2RGB) # convert color
+    height, width = img_gl.shape[:2] # get shape
 
     # テクスチャ・オブジェクトを生成する。
     texture = gl.glGenTextures(1)
