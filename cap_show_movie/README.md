@@ -1,2 +1,2 @@
 ### usage
-python capture_show_image.py
+python capture_show_movie.py
